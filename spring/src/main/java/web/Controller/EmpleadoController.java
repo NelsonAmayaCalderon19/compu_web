@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import web.repository.*;
 import web.entities.*;
-import web.utility.*;
 @Controller
 //@RestController
 @RequestMapping({"/empleado"})
@@ -61,7 +60,6 @@ public class EmpleadoController {
     public String registrarUsuario(HttpServletRequest request, Model model) {
 
 		Empleado u = new Empleado();
-		Password p = new Password();
         String cedula = request.getParameter("txtcedula");
         String nombre = request.getParameter("txtnombre");
         String telefono = request.getParameter("txttelefono");

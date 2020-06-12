@@ -1,7 +1,14 @@
 package web.Controller;
 
 import java.util.Optional;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import web.repository.*;
+import web.util.SendMailService;
 import web.entities.*;
 
 
@@ -29,6 +37,8 @@ public class ClienteController {
 	TipocompRepository tipocomprepository;
 	@Autowired
 	ClienteRepository clienterepository;
+	@Autowired
+	SendMailService sendMailService;
 	
 	@GetMapping("/listado")
 	public String listado(Model modelo, Model model, Model mod){	
@@ -58,7 +68,13 @@ public class ClienteController {
         u.setEmail(email);
         System.out.println(u);
         clienterepository.save(u);
+        String asunto = "Bienvenido A la Familia - CompuWeb Cúcuta"; 
+        String mensaje = "Bienvenido: "+u.getNombre()+",\nNuestras tiendas estarán disponible para ti, por este medio \nContactanos a nuestro telefono: 31272632637 \ny Realiza tus pedidos via telefonica o a nuestro correo: compuwebcucuta@gmail.com";
+      
+        sendMailService.sendMail("nelsonamayacalderon@gmail.com", u.getEmail(), asunto, mensaje);
         model.addAttribute("computador", computadorrepository.findAll());
         return "home";
     }
+	
+	
 }

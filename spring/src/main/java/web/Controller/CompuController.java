@@ -28,6 +28,8 @@ public class CompuController {
 	MarcaRepository marcarepository;
 	@Autowired
 	TipocompRepository tipocomprepository;
+	@Autowired
+	InventarioRepository inventariorepository;
 	@GetMapping("/listado")
 	public String listado(Model modelo, Model model){	
 		modelo.addAttribute("computador", computadorrepository.findAll());
@@ -43,10 +45,10 @@ public class CompuController {
 	}
 	
 	@PostMapping({ "/registrarComputadora" })
-    public String registrarUsuario(HttpServletRequest request) {
+    public String registrarUsuario(HttpServletRequest request, Model modelo) {
 
 
-  
+		Inventario inv = new Inventario();
         Computador u = new Computador();
         Optional<Marca> mOptional = marcarepository.findById(Integer.parseInt(request.getParameter("selectmarca")));
 
@@ -67,7 +69,10 @@ public class CompuController {
 		u.setImagen(imagen);
         System.out.println(u);
         computadorrepository.save(u);
-
+        inv.setIdComputador(u.getId());
+        inv.setCantidad(0);
+        inventariorepository.save(inv);
+        modelo.addAttribute("computador", computadorrepository.findAll());
         return "home";
     }
 }

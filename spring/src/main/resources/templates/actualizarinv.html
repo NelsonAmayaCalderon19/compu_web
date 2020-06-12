@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">                                        
+<nav class="navbar navbar-expand-lg navbar-light bg-light">                          
   <img class="logo" src="https://image.flaticon.com/icons/png/512/30/30537.png" width="150px" height="80px"  alt="" title="">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
          Computadores
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item"  href="/index/registrar" >Registrar PC</a>      
+            <a class="dropdown-item"  href="/index/registrar" >Registrar PC</a>          
              <a class="dropdown-item"  href="/index/listado" >Listado de PC</a>
         </div>
         </li>
@@ -53,7 +53,7 @@
          Clientes
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item"  href="/cliente/registrar" >Registrar Cliente</a>         
+            <a class="dropdown-item"  href="/cliente/registrar" >Registrar Cliente</a>          
              <a class="dropdown-item"  href="/cliente/listado" >Listado de Clientes</a>
         </div>
         </li>
@@ -83,116 +83,64 @@
        <a class="dropdown-item"  href="/inventario/ver" >Administrar</a>        
              </div>
         </li>
-</ul>      
+</ul>    
      <ul class="navbar-nav mr-auto">
-  <form  th:action="@{/index/salir}" th:method="post">   
-              <button type="submit" name="accion" value="Salir" class="btn btn-danger">Cerrar Sesión</button>         
+  <form  th:action="@{/index/salir}" th:method="post">  
+              <button type="submit" name="accion" value="Salir" class="btn btn-danger">Cerrar Sesión</button>        
  </form>
     </ul>
      </div>
 </nav>
-    <div class="container col-12">
+   <div class="container col-12">
     <div class="row justify-content-center">   	
     	<div class="col-12">
- <h1 class="text-center text-primary">Inventario Almacen</h1>
-       </div>
-       <div class="col-10">
-       <table  id="minhatabela" class="display responsive table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-<thead>
-<tr>
-<th class="text-center">Nombre</th>
-<th class="text-center">Marca</th>
-<th class="text-center">Tipo PC</th>
-<th class="text-center">Cantidad Actual</th>
-<!-- <th class="text-center">Cantidad Adicionar</th>-->
-<th class="text-center">Acciones</th>
-</tr>
-</thead>
-<tbody>
-<tr th:each="timetable: ${inventario}">
-<td th:text="${timetable.computador.getDescripcion()}"></td>
-<td th:text="${timetable.computador.marcaBean.getDescripcion()}"></td>
-<td th:text="${timetable.computador.tipocomp.getDescripcion()}"></td>
-<td th:text="${timetable.cantidad}"></td>
-<!--<td class="text-center"><input type="number" name="cantidad" id="cantidad" value="0" min="0"/></td>-->
-<td class="text-center">
-<form id="miForm" th:action="@{/inventario/actualizar}"  th:method="POST">
-<input type="hidden" th:value="${timetable.computador.getId()}" name="idpc"/>
- <input class=" btn btn-block btn-success" type="submit" value="Actualizar" id="actualizar" name="accion"/>
+ <h1 class="text-center text-primary">Actualizar Inventario</h1>
+       </div>          
+         <div class="border border-primary rounded col-6">
+        <div class="col-12"  th:each="timetable: ${invent}">
+        <form style="padding-top: 25px;" id="miForm" th:action="@{/inventario/actualizado}"  th:method="POST">       
+  <div class="form-group">
+    <h4>Id Articulo</h4>
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-id-card"></i></span>
+    </div>
+    <input type="text" class="form-control" id="id" name="txtid" th:value="${timetable.getIdComputador()}"  required="" readonly="true" placeholder="Digita la Cedula del Cliente">
+  </div>
+    </div>
+    <div class="form-group">
+    <h4>Cantidad Existencias Actual</h4>
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><strong>#</strong></span>
+    </div>
+    <input type="text" class="form-control" id="cant_actual" name="txtcant_actual" th:value="${timetable.getCantidad()}"   required="" readonly="true" placeholder="Ingresa el Nombre del Cliente">
+  </div>
+    </div>
+    <div class="form-group">
+    <h4>Unidades a Añadir</h4>
+    <div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><strong>#</strong></span>
+    </div>
+    <input type="number" class="form-control" id="cantidad" name="txtcantidad" min="0"  value="0">
+  </div>
+    </div>
    
-</form>
-</tr>
-</tbody>
-</table>
-<script>
-<!--  th:href="${'/inventario/actualizar/'+timetable.computador.getId()}"-->
-$(document).ready( function () {
-  $('#minhatabela').DataTable();
+    <input class=" btn btn-block btn-success" type="submit" value="Agregar" id="agregar" name="accion"/>
+               <a class=" btn btn-block btn-warning" id="clearbutton" href="/inventario/ver">Cancelar</a>
+               <br>
+               </form>
+        </div>
+        </div>      	
+    	</div>
+    </div>
+     <script>
+    document.getElementById("clearbutton").onclick = limpiaCampo;
 
-} );
-$('#minhatabela').DataTable( {
-  responsive: true,
-  //"createdRow": function( row, data, dataIndex ) {
-    //       if ( data[1] != "London" ) {        
-      // $(row).addClass('red');
-      //     }
-     //}
-} );
-$('#minhatabela').DataTable( {
-
-  
-  "destroy": true,
-  
-  language: {
-    "sProcessing":     "Procesando...",
-              "sLengthMenu":     "Mostrar _MENU_ registros",
-              "sZeroRecords":    "No se encontraron resultados",
-              "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-              "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
-              "sUrl":            "",
-              "sInfoThousands":  ",",
-              "sLoadingRecords": "Cargando...",
-              "oPaginate": {
-                  "sFirst":    "Primero",
-                  "sLast":     "Último",
-                  "sNext":     "Siguiente",
-                  "sPrevious": "Anterior"
-              },
-              "oAria": {
-                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              },
-              "buttons": {
-                  "copy": "Copiar",
-                  "colvis": "Visibilidad"
-              },
-
-              
-             
-}
-} );
-function aviso(url){
-      alertify.confirm('<Strong>¡Adventercia!</Strong>',"¿Esta Seguro de Eliminar este Docente?",
-function() {      
-  alertify.success('Confirmado');
-  document.location = url;
-return true;
-},
-function() {      
-  alertify.error('Cancelado');
-}
-);
-}; 
-</script>
-       </div>
-       
-       </div>
-       </div>
-    
- 
+    function limpiaCampo() {
+    	document.getElementById("miForm").reset();
+    }
+    </script>
 </body>
 </html>

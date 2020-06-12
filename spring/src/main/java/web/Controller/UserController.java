@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import web.entities.Empleado;
 import web.repository.*;
-import web.utility.Password;
 
 import java.util.Optional;
 
@@ -73,7 +72,6 @@ public class UserController {
 	}
 	@PostMapping({"/home"})
     public String home(HttpServletRequest request, Model modelo, Model imprimir) {
-		Password p = new Password();
 		Optional<Empleado> empleadoOpt = empleadorepository.findById(Integer.parseInt(request.getParameter("cedula")));
 		if(!empleadoOpt.isPresent()) {
 			return "index";
