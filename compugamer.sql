@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-06-2020 a las 17:35:41
+-- Tiempo de generación: 13-06-2020 a las 01:35:25
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -41,10 +41,15 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`cedula`, `nombre`, `telefono`, `email`) VALUES
 ('189232389', 'Jaider Amaya', '217366273', 'jaider@gmail.com'),
+('234783478', 'Jaimito Perez', '3182738264', 'nelsoneduardoac@ufps.edu.co'),
+('26737467', 'Pedro Quiñonez', '423352366', 'nelsoneduardoac@ufps.edu.co'),
 ('3474738', 'Eduardo Calderon', '217366273', 'jaider@gmail.com'),
 ('3787347834', 'Estela Calderon', '3157876185', 'josearias@gmail.com'),
 ('67346743', 'Luis Andrade', '3467346734', 'nelsonamayacalderon@gmail.com'),
-('743783478', 'Amparo Barreto', '3202337468', 'joseruiznn012345@gmail.com');
+('743783478', 'Amparo Barreto', '3202337468', 'joseruiznn012345@gmail.com'),
+('909034984', 'Amparo', '13142425273', 'nelsoneduardoac@ufps.edu.co'),
+('93847847', 'Trino Primo', '66625535364', 'nelsoneduardoac@ufps.edu.co'),
+('9488343', 'Juan aldana', '3314142325', 'nelsonamayacalderon@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -71,7 +76,9 @@ INSERT INTO `computador` (`id`, `descripcion`, `marca`, `tipo`, `precio`, `image
 (3, 'Familiar', 3, 2, 1560000, 'https://media.aws.alkosto.com/media/catalog/product/cache/6/image/69ace863370f34bdf190e4e164b6e123/1/9/191628179022_4.jpg'),
 (4, 'hcxjhxchxcxck', 1, 3, 17843783, 'https://d500.epimg.net/cincodias/imagenes/2015/10/25/lifestyle/1445789373_404272_1445789529_noticia_normal.jpg'),
 (5, 'urery575uuyr', 3, 1, 1747834, 'https://www.adslzone.net/app/uploads/2018/02/android-pc.jpg'),
-(6, 'yughgh', 1, 2, 143343674, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/220px-Desktop_computer_clipart_-_Yellow_theme.svg.png');
+(6, 'yughgh', 1, 2, 143343674, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/220px-Desktop_computer_clipart_-_Yellow_theme.svg.png'),
+(7, 'Nueva PC', 1, 1, 1276327, 'https://sites.google.com/site/origenpcmolin/_/rsrc/1490818214926/home/defina-computador-de-escritorio-computador-portatil-cuales-son-las-ventajas-y-diferencias-entre-un-computador-de-escritorio-y-un-portatil-que-caracteriza-un-computador-de-portatil/HHJV.png'),
+(8, 'Otra PC Nueva', 3, 2, 1263635, 'https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/compescritorio-01_xl.png');
 
 -- --------------------------------------------------------
 
@@ -112,9 +119,11 @@ CREATE TABLE `inventario` (
 --
 
 INSERT INTO `inventario` (`id_computador`, `cantidad`) VALUES
-(1, 2),
-(2, 0),
-(3, 5);
+(1, 3),
+(2, 8),
+(3, 5),
+(7, 0),
+(8, 4);
 
 -- --------------------------------------------------------
 
@@ -206,7 +215,7 @@ ALTER TABLE `tipocomp`
 -- AUTO_INCREMENT de la tabla `computador`
 --
 ALTER TABLE `computador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
