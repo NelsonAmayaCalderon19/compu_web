@@ -38,8 +38,9 @@ public class CompuController {
 	}
 	
 	@GetMapping("/registrar")
-	public String registrar(Model modelo){	
-		modelo.addAttribute("marca", marcarepository.findAll());
+	public String registrar(Model modelo){
+		modelo.addAttribute("computador", new Computador());
+		modelo.addAttribute("marcas", marcarepository.findAll());
 		//modelo.addAttribute("countryName ", "nelson");
 		return "registrarpc";
 	}

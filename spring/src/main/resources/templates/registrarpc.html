@@ -84,7 +84,7 @@
         </li>
 </ul>     
      <ul class="navbar-nav mr-auto">
-  <form  th:action="@{/index/salir}" th:method="post"> 
+  <form  th:action="@{/logout}" th:method="post"> 
               <button type="submit" name="accion" value="Salir" class="btn btn-danger">Cerrar Sesión</button>         
  </form>
     </ul>  
@@ -97,7 +97,7 @@
        </div>          
          <div class="border border-primary rounded col-6">
         <div class="col-12" >
-        <form style="padding-top: 25px;"  id="miForm" th:action="@{/compu/registrarComputadora}"  th:method="POST">
+        <form style="padding-top: 25px;"  id="miForm" th:action="@{/compu/registrarComputadora}" th:object="${computador}"  th:method="POST">
          <div class="form-group">
     <h4>Descripción</h4>
     <div class="input-group mb-3">

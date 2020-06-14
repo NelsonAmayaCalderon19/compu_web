@@ -60,7 +60,7 @@ public class EmpleadoController {
     public String registrarUsuario(HttpServletRequest request, Model model) {
 
 		Empleado u = new Empleado();
-        String cedula = request.getParameter("txtcedula");
+        String cedula =  request.getParameter("txtcedula");
         String nombre = request.getParameter("txtnombre");
         String telefono = request.getParameter("txttelefono");
         String cargo = request.getParameter("selectcargo");

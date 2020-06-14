@@ -32,6 +32,10 @@ public class UserController {
 	public String index(){
 		return "Hola Mundo con Spring Boot por GET";
 	}
+	@GetMapping("/login")
+	public String login(){
+		return "index";
+	}
 	
 	@GetMapping("/adios")
 	public String adios(){
@@ -42,7 +46,7 @@ public class UserController {
 		return "Adios con Spring Boot por GET "+ empleado.getNombre();
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String vista(Model modelo){	
 		modelo.addAttribute("empleado", empleadorepository.findAll());
 
@@ -105,8 +109,5 @@ public class UserController {
     public String iniciarSesion() {
         return "home";
     }
-	@PostMapping({"/salir"})
-    public String cerrarSesion() {
-        return "index";
-    }
+
 }
