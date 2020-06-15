@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2020 a las 01:35:25
+-- Tiempo de generación: 15-06-2020 a las 21:42:43
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -44,6 +44,8 @@ INSERT INTO `cliente` (`cedula`, `nombre`, `telefono`, `email`) VALUES
 ('234783478', 'Jaimito Perez', '3182738264', 'nelsoneduardoac@ufps.edu.co'),
 ('26737467', 'Pedro Quiñonez', '423352366', 'nelsoneduardoac@ufps.edu.co'),
 ('3474738', 'Eduardo Calderon', '217366273', 'jaider@gmail.com'),
+('348989434', 'Jaider Amaya', '312534363', 'nelsoneduardoac@ufps.edu.co'),
+('366737623', 'Rene Angarita', '242536364', 'nelsoneduardoac@ufps.edu.co'),
 ('3787347834', 'Estela Calderon', '3157876185', 'josearias@gmail.com'),
 ('67346743', 'Luis Andrade', '3467346734', 'nelsonamayacalderon@gmail.com'),
 ('743783478', 'Amparo Barreto', '3202337468', 'joseruiznn012345@gmail.com'),
@@ -78,7 +80,9 @@ INSERT INTO `computador` (`id`, `descripcion`, `marca`, `tipo`, `precio`, `image
 (5, 'urery575uuyr', 3, 1, 1747834, 'https://www.adslzone.net/app/uploads/2018/02/android-pc.jpg'),
 (6, 'yughgh', 1, 2, 143343674, 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Desktop_computer_clipart_-_Yellow_theme.svg/220px-Desktop_computer_clipart_-_Yellow_theme.svg.png'),
 (7, 'Nueva PC', 1, 1, 1276327, 'https://sites.google.com/site/origenpcmolin/_/rsrc/1490818214926/home/defina-computador-de-escritorio-computador-portatil-cuales-son-las-ventajas-y-diferencias-entre-un-computador-de-escritorio-y-un-portatil-que-caracteriza-un-computador-de-portatil/HHJV.png'),
-(8, 'Otra PC Nueva', 3, 2, 1263635, 'https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/compescritorio-01_xl.png');
+(8, 'Otra PC Nueva', 3, 2, 1263635, 'https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/informatica_basica/image/compescritorio-01_xl.png'),
+(9, 'Descripcion corta', 2, 2, 17363654, 'https://as.com/betech/imagenes/2018/02/16/portada/1518812634_028586_1518820727_noticia_normal.jpg'),
+(10, 'Computador de mesa para gamer', 2, 2, 20393484, 'https://pcware.com.co/wp-content/uploads/2018/07/pc-gamer-i5-8400-intel-octava-generacion_g_700x700.jpg');
 
 -- --------------------------------------------------------
 
@@ -99,9 +103,10 @@ CREATE TABLE `empleado` (
 --
 
 INSERT INTO `empleado` (`cedula`, `nombre`, `cargo`, `telefono`, `clave`) VALUES
-(32672672, 'Nelson Calderon', 'Vendedor', '2452451451', '12345'),
-(45845459, 'Oscar de la Hoz', 'Administrador', '334347834', '13579'),
-(377834823, 'Cristobal Colón', 'Tecnico', '3162736253', '23762356');
+(32672672, 'Nelson Calderon', 'Vendedor', '2452451451', '$2a$04$GQHDp5fhNYpZCjfJGSi2NO8vGtIq36yM/c4Z6ICJkvQlTs4oAvE3e'),
+(45845459, 'Oscar de la Hoz', 'Administrador', '334347834', '$2a$04$LJ9qWho9CTMGumiBOPImF.2WZfP1pX/UtjdrbPWjI1wOFRfn4hlmq\r\n\r\n'),
+(377834823, 'Cristobal Colón', 'Tecnico', '3162736253', '$2a$04$xG6N7zZCtjemIVEsaJmGvOACcTrBbicGzRtBTixgLeo63NR94DnE6'),
+(783239834, 'Carlos Blanco', 'Administrador', '3612732636', '$2a$04$Dsl4o/oNqQGoAl7OU1EI6eh.kmOl0o1T8N8NbzEZj8s20Z56myGUK');
 
 -- --------------------------------------------------------
 
@@ -121,9 +126,11 @@ CREATE TABLE `inventario` (
 INSERT INTO `inventario` (`id_computador`, `cantidad`) VALUES
 (1, 3),
 (2, 8),
-(3, 5),
-(7, 0),
-(8, 4);
+(3, 8),
+(7, 120),
+(8, 4),
+(9, 10),
+(10, 25);
 
 -- --------------------------------------------------------
 
@@ -215,7 +222,7 @@ ALTER TABLE `tipocomp`
 -- AUTO_INCREMENT de la tabla `computador`
 --
 ALTER TABLE `computador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
